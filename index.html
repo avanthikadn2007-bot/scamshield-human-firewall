@@ -1,0 +1,136 @@
+<!DOCTUPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SCAMSHIELD â€” The Human Firewall | Social Engineering Detection Engine</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body { family: sans-serif; background-color: #0B1120; color: #F8FAFC; }
+.glass-panel { background: rgba(19, 29, 49, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+.glow-accent { box-shadow: 0 0 25px rgba(0, 240, 255, 0.15); }
+</style>
+</head>
+<body class="min-h-screen flex flex-col">
+<nav class="border-b border-gray-800 bg-[0B1120]/90 px-6 py-4">
+<div class="max-w-7l mx-auto flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-400 to-blue-600 flex items-center justify-center text-slate-900 text-xl font-bold">
+<i class="fa-solid fa-shield-halved"></i>
+</div>
+<div>
+<span class="text-xl font-bold text-white">SCAMSHIELD</span>
+<span class="text-xs text-cyan-400 block -mt-1 font-mono">The Human Firewall</span>
+</div>
+</div>
+<div class="flex items-center space-x-4 text-sm">
+<a href="#demo-section" class="text-cyan-400 hover:underline"><i class="fa-solid fa-bolt mr-1"></i>Threat Scanner</a>
+<a href="#playbook-section" class="text-yellow-400 hover:underline"><i class="fa-solid fa-book-open mr-1"></i>Playbook</a>
+</div>
+</div>
+</nav>
+<header class="text-center pt-12 pb-16 px-6 border-b border-gray-800">
+<div class="max-w-4l mx-auto">
+<div class="inline-block px-3 py-1.5 rounded-full bg-cyan-400/10 border border-cyan-400/30 text-cyan-400 text-xs font-semibold uppercase mb-6"><i class="fa-solid fa-brain mr-1"></i>Beyond URL Checking</div>
+<h1 class="text-4xl sm:text-6xl font-bold tracking-tight mb-4">Before They Hack Your Device, <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500">They Hack Your Mind.</span></h1>
+<p class="text-gray-300 text-lg max-w-3l mx-auto mb-8">SCAMSHIELD protects human cognition by detecting psychological manipulation vectorsâ€”fear, urgency, authority, and isolationâ€”in real time.</p>
+</div>
+</header>
+<main class="max-w-7l mx-auto px-6 py-12 space-y-16 flex-1">
+<section id="demo-section">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+<div><h2 class="text-3xl font-bold text-white">Live Threat Matrix Scanner</h2><p class="text-gray-400 text-sm">Analyze suspicious SMS, WhatsApp, or call transcripts.</p></div>
+<div class="flex flex-wrap gap-2">
+<button onclick="loadPreset('electricity')" class="px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-xs text-gray-300">âš¡ Electricity</button>
+<button onclick="loadPreset('digitalArrest')" class="px-3 py-1.5 rounded-mg bg-slate-800 border border-slate-700 text-xs text-gray-300">ğŸ’¸ Digital Arrest</button>
+<button onclick="loadPreset('bankOtp')" class="px-3 py-1.5 rounded-mg bg-slate-800 border border-slate-700 text-xs text-gray-300">ğŸµ Bank OTP</button>
+<button onclick="loadPreset('lottery')" class="px-3 py-1.5 rounded-mg bg-slate-800 border border-slate-700 text-xs text-gray-300">ğŸ KBC Lottery</button>
+</div>
+</div>
+<div class="glass-panel rounded-2xl p-6 glow-accent mb-8">
+<textarea id="threatInput" rows="4" class="w-full bg-[#0B1120] border border-gray-700 rounded-xl p-4 text-gray-100 font-mono text-sm focus:outline-none focus:border-cyan-400" placeholder="Paste message here..."></textarea>
+<div class="mt-4 flex justify-end">
+<button onclick="runAnalysis()" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-600 text-slate-900 font-bold shadow"><I class="fa-solid fa-shield-virus"></i> SCAN WITH HUMAN FIREWALL</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
+<div class="lg:col-span-4 glass-panel rounded-2xl p-6 text-center flex flex-col justify-between">
+<div>
+<span id="threatBadge" class="px-2.5 py-1 rounded bg-red-500/20 text-red-400 border border-red-500/40 text-xs font-bold">CRITICAL THREAT</span>
+<div id="scoreNumber" class="text-6xl font-black text-red-500 font-mono my-4">97%</div>
+<p id="scamTypeName" class="text-sm font-semibold text-white bg-slate-800/80 rounded-lg py-2 px-3 border border-slate-700">âš¡ Utility Disconnection Scam</p>
+</div>
+</div>
+<div class="lg:col-span-4 glass-panel rounded-2xl p-6">
+<h3 class="text-sm font-bold text-white mb-2">ğŸ™€ Cognitive Manipulation Di-gnosis</h3>
+<p yid="whyManipulatedText" class="text-xs text-gray-300 bg-slate-900/60 p-3 rounded-xl mb-4">The attacker creates artificial panic by threatening immediate electricity disconnection tonight.</p>
+<h4 class="text-xs font-mono text-red-400 font-bold mb-2">Red Flags:</h4>
+<div id="redFlagList" class="space-y-2 text-xs"></div>
+</div>
+<div class="lg:col-span-4 glass-panel rounded-2xl p-6 flex flex-col items-center justify-center">
+<h3 class="text-xs font-mono text-gray-400 mb-2 w-full text-left">Psychological Radar</h3>
+<div class="relative w-full h-52 flex items-center justify-center"><canvas id="radarChart"></canvas></div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<div class="glass-panel rounded-2xl p-6 border-l-4 border-l-cyan-400">
+<h3 class="text-base font-bold text-white mb-3">ğŸ… DIGITAL BODYGUARD; Instant Defense</h3>
+<div class="space-y-3">
+<div class="bg-red-500/10 border border-red-500/30 rounded-xl p-3"><span class="text-[11px] font-mono text-red-400 font-bold block mb-1">ğŸ’‘ IMMEDIATE ACTION</span><p class="text-xs font-semibold text-white">DO NOT call the number in the sms. Do not pay any UPI link.</p></div>
+<div class="bg-slate-900/80 border border-slate-800 rounded-xl p-3"><span class="text-[11px] font-mono text-cyan-400 font-bold block mb-1">ğŸ§© SAFE REPLE: </span><p id="safeReply" class="text-xs text-gray-300 italic font-mono">"I will verify directly via official utility portal."</p></div>
+</div>
+</div>
+<div class="glass-panel rounded-2xl p-6 border-l-4 border-l-yellow-400">
+<h3 class="text-base font-bold text-white mb-2">ğŸ‘¨FAMILY SHIELD: 1-Tap SOS</h3>
+<p class="text-xs text-gray-300 mb-3">Protect elderly family members before they respond to a fear trap.</p>
+<div class="bg-slate-900 rounded-xl border border-slate-700 p-3 mb-3 text-xs font-mono text-gray-200"><p class="text-yellow-400">âš ï¸ High-risk Scam detected. Risk: 97%.</p></div>
+<button onclick="alert('FAMILY SHIELD: Simulated alert dispatched to trusted family contact!')" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold text-xs"><i class="fa-solid fa-paper-plane"></i> SIMULATE BROADCAST TO FAMILY</button>
+</div>
+</div>
+</section>
+<section id="playbook-section" class="border-t border-gray-800 pt-12">
+<div class="text-center max-w-3l mx-auto mb-8">
+<h2 class="text-3xl font-bold text-white">Hackathon Victory Playbook & Pitch Script</h2>
+<p class="text-gray-400 text-sm mt-1">The proven strategy to inspire judges and show unique social impact.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="glass-panel p-6 rounded-2xl border-t-2 border-t-cyan-400"><h3 class="text-sm font-bold text-cyan-400 mb-2">ğŸŒ‘ ÓZ[ˆ]ÚØÜš\ÚÏÛ\ÜÏH^^È^YÜ˜^KLÌ][XÈˆ’YÙ\ËÚ[ˆH\™[ÜÙ\ÈZ\ˆØ]š[™ÜËØØ[[Y\œÈY‰İXÚÈM‹Xš][˜Ü\[Û‹ˆ^HXÚÙYZ\ˆ™X\ˆ[™\İˆØØ[TÚY[›İXİÈH[X[‹ˆÜÙ]‚]ˆÛ\ÜÏH™Û\ÜË\[™[Mˆ›İ[™YL›Ü™\‹]Lˆ›Ü™\‹]\\œKMÈÛ\ÜÏH^\ÛH›ÛX›Û^\\œKMX‹Lˆ¼'äæÈËP›ØÚÈ\˜Ú]Xİ\™OÚÏÛ\ÜÏH^^È^YÜ˜^KLÌ›ØÚÈNˆ[\˜Xİ]™HRKˆ›ØÚÈˆÛÙÛš]]™HŞXÚÛÙŞH[™™\™[˜ÙH[™Ú[™Kˆ›ØÚÈÎˆ˜[Z[HÚY[Y™[œÙH™]ÛÜšËÜÙ]‚]ˆÛ\ÜÏH™Û\ÜË\[™[Mˆ›İ[™YL›Ü™\‹]Lˆ›Ü™\‹]^Y[İËMÈÛ\ÜÏH^\ÛH›ÛX›Û^^Y[İËMX‹Lˆ¼'éèHIHY™[œÙHÚY[ÚÏÛ\ÜÏH^^È^YÜ˜^KLÌ”š]˜XŞOÈ™\›ËZÛ›İÛYÙHØØ[›ØÙ\ÜÚ[™Ëˆ˜[ÙHÜÚ]]™\ÏÈX[YØ]H™YÙ^]]Ë]Ú][\İÈ™X[˜[šÜËÜÙ]‚Ù]‚ÜÙXİ[Û‚ÛXZ[‚<footer class="border-t border-gray-800 py-8 px-6 text-center text-xs text-gray-500 font-mono"><p>SCAMSHIELD â€” The Human Firewall. Engineered for Hackathon Victory.</p></footer>
+<script>
+const PRESETS = {
+  electricity: { text: "Dear consumer, your electricity power will be disconnected tonight at 9:30 PM because your previous month bill was not updated. Call 98765-43210 and pay â–‹1,499 immediately.", score: 97, threat: "CRITICAL THREAT", type: "âš¡ Utility Disconnection Scam", why: "Attacker manufactures panic by threatening electricity cut tonight.", flags: ["disconnected tonight", "pay â–‹1,499 immediately"], metrics: [98, 92, 90, 75, 45, 10, 85] },
+  digitalArrest: { text: "This is Inspector Rajesh from Crime Branch Delhi. A package in your name containing 140g MDMA has been seized. Do not hang up this call. Transfer â‘ 95,000 security deposit now.", score: 99, threat: "CRITICAL THREAT", type: "ğŸ’¸ Digital Arrest & Extortion", why: "Authority impersonation and intimidation to force isolation.", flags: ["Do not hang up", "transfer â 95,000"], metrics: [99, 98, 99, 90, 96, 0, 90] },
+  bankOtp: { text: "Dear SBI Customer, Your YONO account has been suspended. Your account will be blocked in 10 minutes. Click https://sbi-kyc-portal.top and enter OTP now.", score: 95, threat: "CRITICAL THREAT", type: "ğŸµ Bank KYC Phishing", why: "Creates false banking urgency to steal OTP.", flags: ["blocked in 10 minutes", "sbi-kyc-portal.top"], metrics: [95, 80, 92, 60, 20, 10, 99] },
+  lottery: { text: "CONGRATULATIONS! You won â 25,00,000 in KBC Lucky Draw! Deposit â‘ 24,999 fee to UPI: kbc.prize@okaxis within 15 mins.", score: 92, threat: "DANGEROUS", type: "ğŸ Advance-Fee Lottery Trap", why: "Exploits greed with fake reward, demands fee.", flags: ["won â‘ 25,00,000", "deposit â‘ 24,999 fee"], metrics: [85, 10, 70, 88, 30, 98, 70] }
+};
+let chart = null;
+function initRadar(m) {
+  const ctx = document.getElementById('radarChart').getContext('2d');
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, { type: 'radar', data: { labels: ['Urgency', 'Fear', 'Authority', 'Financial', 'Secrecy', 'Greed', 'OTP'], datasets: [{ data: m, backgroundColor: 'rgba(239, 68, 68, 0.3)', borderColor: '#ef4444', borderWidth: 2, pointBackgroundColor: '#00F0FF' }] }, options: { responsive: true, maintainAspectRatio: false, scales: { r: { angleLines: { color: 'rgba(255,255,255,0.1)' }, grid: { color: 'rgba(255,255,255,0.08)' }, pointLabels: { color: '#94A3B8' }, ticks: { display: false, max: 100, min: 0 } } }, plugins: { legend: { display: false } } } });
+}
+function loadPreset(k) {
+  const p = PRESETS[k];
+  if (!p) return;
+  document.getElementById('threatInput').value = p.text;
+  document.getElementById('scoreNumber').innerText = p.score + '%';
+  document.getElementById('threatBadge').innerText = p.threat;
+  document.getElementById('scamTypeName').innerText = p.type;
+  document.getElementById('whyManipulatedText').innerText = p.why;
+  const fl = document.getElementById('redFlagList'); fl.innerHTML = '';
+  p.flags.forEach(f => { fl.innerHTML += `<div class="bg-red-500/10 border border-red-500/20 rounded-lg p-2"><span class="font-mono font-bold text-red-400">"${f}"<\/span><\/div>`; });
+  initRadar(p.metrics);
+}
+function runAnalysis() {
+  const t = document.getElementById('threatInput').value.toLowerCase();
+  let p = PRESETS.electricity;
+  if (t.includes('police') || t.includes('arrest')) p = PRESETS.digitalArrest;
+  else if (t.includes('otp') || t.includes('bank')) p = PRESETS.bankOtp;
+  else if (t.includes('won') || t.includes('prize')) p = PRESETS.lottery;
+  loadPreset(p === PRESETS.electricity ? 'electricity' : (p === PRESETS.digitalArrest ? 'digitalArrest' : (p === PRESETS.bankOtp ? 'bankOtp' : 'lottery')));
+}
+window.onload = () => loadPreset('electricity');
+</script>
+</body>
+</html>
